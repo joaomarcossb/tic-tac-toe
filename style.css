@@ -1,0 +1,136 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(90deg, #02aab0, #00cdac);
+}
+
+.board {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(3, auto);
+}
+
+.board.x .cell:not(.x, .o):hover::before,
+.board.x .cell:not(.x, .o):hover::after,
+.board.o .cell:not(.x, .o):hover::before {
+    opacity: 0.6;
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+    border: 2px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.cell:nth-child(1),
+.cell:nth-child(2),
+.cell:nth-child(3) {
+    border-top: none;
+}
+
+.cell:nth-child(3),
+.cell:nth-child(6),
+.cell:nth-child(9) {
+    border-right: none;
+}
+
+.cell:nth-child(7),
+.cell:nth-child(8),
+.cell:nth-child(9) {
+    border-bottom: none;
+}
+
+.cell:nth-child(1),
+.cell:nth-child(4),
+.cell:nth-child(7) {
+    border-left: none;
+}
+
+.cell.x::before,
+.cell.x::after,
+.board.x .cell:not(.x, .o):hover::before,
+.board.x .cell:not(.x, .o):hover::after {
+    content: '';
+    height: calc(100px * 0.1);
+    width: calc(100px * 0.9);
+    background: white;
+    position: absolute;
+}
+
+.cell.x::before,
+.board.x .cell:not(.x, .o):hover::before {
+    transform: rotate(45deg);
+}
+
+.cell.x::after,
+.board.x .cell:not(.x, .o):hover::after {
+    transform: rotate(-45deg);
+}
+
+.cell.o::before,
+.board.o .cell:not(.x, .o):hover::before {
+    content: '';
+    height: calc(100px * 0.56);
+    width: calc(100px * 0.56);
+    border: calc(100px * 0.1) solid white;
+    border-radius: 50%;
+}
+
+.cell.x, .cell.o {
+    cursor: not-allowed;
+}
+
+.win-msg {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,0.8);
+}
+
+.win-msg-text {
+    font: normal 2.5rem Arial, sans-serif;
+    letter-spacing: 1.6px;
+    color: white;
+}
+
+.show-win-msg {
+    display: flex;
+}
+
+.win-msg-btn {
+    margin: 20px;
+    padding: 10px 20px;
+    border-style: none;
+    border-radius: 6px;
+    font: normal 1rem system-ui, sans-serif;
+    letter-spacing: .8px;
+    cursor: pointer;
+    background-color: lightgreen;
+    transition: background-color .3s;
+}
+
+.win-msg-btn:hover {
+    background-color: white;
+}
